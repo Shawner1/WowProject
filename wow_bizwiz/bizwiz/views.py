@@ -19,3 +19,11 @@ class Page_for_TagsView(View):
         return render(
             request=request, template_name = 'Page_for_Tags.html', context = {}
         )
+
+# Updating_Page views should taken in a form to update answers to specific questions
+class Updating_PageView(View):
+    def get(self, request,industry_id,question_id,answer_id):
+
+        return render(
+            request=request, template_name = 'Updating_Page.html', context = {}
+        )

@@ -19,3 +19,10 @@ class Page_for_TagsView(View):
         return render(
             request=request, template_name = 'Page_for_Tags.html', context = {}
         )
+
+# Page_for_Tags views should display industries that relate to the tag selected **Doesn't take in any info from the user**
+class IndustryView(View):
+    def get(self, request, industry_id):
+        return render(
+            request=request, template_name= 'Industry.html', context={}
+        )

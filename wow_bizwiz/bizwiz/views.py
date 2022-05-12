@@ -11,6 +11,12 @@ class HomeView(View):
         return render(
             request=request, template_name = 'home.html', context = {}
         )
+# Industry views should display industry with its questions and take in a form to add questions
+class IndustryView(View):
+    def get(self, request, industry_id):
+        return render(
+            request=request, template_name= 'Industry.html', context={}
+        )
 
  # Industry views should display industry with its questions and take in a form to add questions   
 class Specific_QuestionView(View):
@@ -28,10 +34,11 @@ class Page_for_TagsView(View):
         return render(
             request=request, template_name = 'Page_for_Tags.html', context = {}
         )
+# Updating_Page views should taken in a form to update answers to specific questions
+class Updating_PageView(View):
+    def get(self, request,industry_id,question_id,answer_id):
 
-# Page_for_Tags views should display industries that relate to the tag selected **Doesn't take in any info from the user**
-class IndustryView(View):
-    def get(self, request, industry_id):
         return render(
-            request=request, template_name= 'Industry.html', context={}
+            request=request, template_name = 'Updating_Page.html', context = {}
         )
+

@@ -12,6 +12,15 @@ class HomeView(View):
             request=request, template_name = 'home.html', context = {}
         )
 
+ # Industry views should display industry with its questions and take in a form to add questions   
+class Specific_QuestionView(View):
+    def get(self,request,industry_id, question_id):
+        
+        return render(
+            request=request, template_name= 'Specific_Question', context={}
+
+        )
+
 # Page_for_Tags views should display industries that relate to the tag selected **Doesn't take in any info from the user**
 class Page_for_TagsView(View):
     def get(self, request,tag_id):

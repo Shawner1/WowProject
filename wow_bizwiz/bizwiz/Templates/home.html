@@ -6,19 +6,19 @@
 
 <h1 style="text-align:center;">Industries</h1><br /><br />
 
-
-
-
-
-
-
-
-
-<center>
+<ul>
+  {% for industry in industries %}
+  <li>
+    <a href="{% url 'industry' industry.id %}">{{industry.industry_name}} </a>
+  </li>
+  {% endfor %}
+</ul>
+<!-- <center> 
   <table>
     <tr>
       <th>
-    <button type="button">Finance</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       
+    <button type="button">Finance</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
     <button type="button">Auto Manufactoring</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <button type="button">Oil & Gas</button>
     
@@ -71,7 +71,7 @@
   </table>
 </center>
 
-  
+  -->
     
 
 

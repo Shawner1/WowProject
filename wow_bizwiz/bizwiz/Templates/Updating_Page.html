@@ -8,17 +8,21 @@
 
 
 <center>
-    <h1>Question Clicked On Last Page:<br />
-        Question 10
+    <h1>{{question.question_text}}<br />
+        Question {{question.id}}
+    
     </h1>
     </center>
 
-    <center
-    <label for="update_answ"><h2>Update Here:</label>
-        <input type="text" id="update_answ" name="update_answ" placeholder="Update Answer from the user">
-        <input type="submit" value="Submit">
+    <center>
+    <form action="{% url 'updating_page' industry.id question.id answer.id %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="save" value="Save" />
+        <input type="submit" name="delete" value="Delete" />
+    </form>
     </center>
 
-    <a href=type=>Go Back</a>
+    <a href="{% url 'specific_question' industry.id question.id %}">Go Back</a>
 
 

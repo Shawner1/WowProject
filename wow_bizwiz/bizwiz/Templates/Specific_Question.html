@@ -9,72 +9,21 @@
 
       
       <center>
-          <h1>Question Clicked On Last Page:<br /><br />
-              Question 10 <br /><br />
+          <h1>{{question.question_text}}<br /><br />
+               <br /><br />
         
           </h1>
         
 </center>
          
-  <center>
-          <form action="/url" method="GET">
-       
-            <input type="text" name="random_answ" placeholder="Random Answer" required>
-             
-        </form><br />
+  <center><p>
+          {% for answers in answer %}
+          <a href="{% url 'specific_question' industry.id question.id answer.id %}">{{answer.answer_text}} </a>
+          {% endfor %}
+          </p>
   </center>
         
-  <center>
-  <form action="/url" method="GET">
-       
-          <input type="text" name="random_answ" placeholder="Random Answer" required>
-           
-      </form><br />
-
-    </center>
-      
-    <center>
-    <form action="/url" method="GET">
-       
-        <input type="text" name="random_answ" placeholder="Random Answer" required>
-         
-    </form><br />
-  </center>
-    
-  <center>
-  <form action="/url" method="GET">
-       
-      <input type="text" name="random_answ" placeholder="Random Answer" required>
-       
-  </form><br />
-</center>
   
-<center>
-<form action="/url" method="GET">
-       
-    <input type="text" name="random_answ" placeholder="Random Answer" required>
-     
-</form><br />
-</center>
-
-<center>
-<form action="/url" method="GET">
-       
-  <input type="text" name="random_answ" placeholder="Random Answer" required>
-   
-</form><br />
-</center>
-
-
-<center>
-  <table>
-
-  
-  <form action="/url" method="GET">
-       
-  <input type="text" name="random_answ" placeholder="Answer Just Given" required>
-   
-</form> 
 
 
 

@@ -16,32 +16,30 @@
         
 </center>
          
-  <center><p>
-          {% for answers in answer %}
-          <a href="{% url 'specific_question' industry.id question.id answer.id %}">{{answer.answer_text}} </a>
+  <center>
+          <p>
+          <ol>
+          {% for answer in answers %}
+          <li>
+          <a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}}</a>
+          </li>
           {% endfor %}
+          </ol> 
           </p>
   </center>
         
-  
 
-
-
-<form action="">
- 
-
-  <input id="_delete" name="" type="hidden" value=""/>
-
-  <button onclick="document.querySelector('#_delete').value = 'true'">Delete</button>
-</form>
 
 </table>
 
-</center>
+<form action="{% url 'specific_question' industry.id question.id %}" method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" name="save" value="Submit" />
 
-<label for="answer"><h2>Answer Here:</label>
-  <input type="text" id="answer" name="answer" placeholder="Answer From The User">
+</form> 
 
+<a href="{% url 'industry' industry.id %}">Go Back</a>
 
         
 

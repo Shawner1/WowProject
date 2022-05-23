@@ -15,8 +15,17 @@
 <center>
     <h2>Questions
     </h2>
-    </center><br /><br /><br /><br />
-
+     </center><br /><br /><br /><br />
+          <p>
+          <ol>
+          {% for questions in questions %}
+          <li>
+          <a href="{% url 'specific_question' industry.id question.id %}">{{question.question_text}}</a>
+          </li>
+          {% endfor %}
+          </ol> 
+          </p>
+          <!--
     <center>
     <table>
         <tr>
@@ -59,12 +68,17 @@
                   <td><a href=type=>Question5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <td><a href=type=>Question10</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  </tr>
-              </table> 
+              </table>  -->
             </center><br /><br /><br /><br />
 
 
-            <label for="question"><h2>Question Here:</label>
-            <input type="text" id="question" name="question" placeholder="Add text">
+            <form action="{% url 'industry' industry.id %}" method="POST">
+              {% csrf_token %}
+              {{ form }}
+              <input type="submit" name="save" value="Submit" />
+              
+          </form>
+          </center>
 
 
 

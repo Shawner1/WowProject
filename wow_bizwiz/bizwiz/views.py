@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.views import View
 from bizwiz.models import *
@@ -15,20 +16,45 @@ class HomeView(View):
 # Industry views should display industry with its questions and take in a form to add questions
 class IndustryView(View):
     def get(self, request, industry_id):
-        industry= Industry.objects.get(pk=industry_id)
+        industry= Industry.objects.get(id=industry_id)
+        question= Question.objects.all()
+        form = QuestionForm(initial={'question_text': Question.question_text})
         return render(
-            request=request, template_name= 'Industry.html', context={'industry':industry}
+            request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question}
         )
+    def post(self, request, industry_id):
+        '''post questions based on what the user submitted in the form'''
+        industry = Industry.objects.get(id=industry_id)
+        if 'create' in request.POST:
+            form = QuestionForm(request.POST)
+            if form.is_valid():
+                question_description = form.cleaned_data['question']
+                print(question_description)
+                Question.objects.create(question_text=question_description,industry_id=industry)
+         # "redirect" to the industry page
+        return redirect('industry',industry_id=industry_id)
 
  # Specific_Question views should display industry with its questions and take in a form to add questions   
 class Specific_QuestionView(View):
-    def get(self,request,industry_id, question_id,answer_id):
+    def get(self,request,industry_id, question_id):
         question= Question.objects.get(id=question_id)
         industry= Industry.objects.get(id=industry_id)
-        answer= Industry.objects.get(id=answer_id)
+        answers= Answer.objects.all()
+        form = AnswerForm(initial={'answer_text': Answer.answer_text})
         return render(
-            request=request, template_name= 'Specific_Question.html', context={"question":question, "industry":industry, "answer":answer}
+            request=request, template_name= 'Specific_Question.html', context={"form":form,"question":question, "industry":industry, "answers":answers}
         )
+    def post(self, request, industry_id,question_id):
+        '''Create the answers based on what the user submitted in the form'''
+        question = Question.objects.get(id=question_id)
+        if 'save' in request.POST:
+            form = AnswerForm(request.POST)
+            if form.is_valid():
+                answer_description = form.cleaned_data['answer']
+                Answer.objects.create(answer_text=answer_description,question=question)
+            
+        # "redirect" to the specific question page
+        return redirect('specific_question',industry_id=industry_id,question_id=question_id)
 
 # Page_for_Tags views should display industries that relate to the tag selected **Doesn't take in any info from the user**
 class Page_for_TagsView(View):
@@ -55,9 +81,9 @@ class Updating_PageView(View):
         if 'save' in request.POST:
             form = Updating_PageForm(request.POST)
             if form.is_valid():
-                answers = form.cleaned_data['answer']
+                answers = form.cleaned_data['update']
                 answer.update(answer_text=answers)
         elif 'delete' in request.POST:
             answer.delete()
         # "redirect" to the specific question page
-        return redirect('specific_question')
+        return redirect('specific_question',industry_id=industry_id,question_id=question_id)

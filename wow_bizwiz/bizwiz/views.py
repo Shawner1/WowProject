@@ -24,13 +24,11 @@ class IndustryView(View):
         )
     def post(self, request, industry_id):
         '''post questions based on what the user submitted in the form'''
-        industry = Industry.objects.get(id=industry_id)
-        if 'create' in request.POST:
+        if 'save' in request.POST:
             form = QuestionForm(request.POST)
             if form.is_valid():
                 question_description = form.cleaned_data['question']
-                print(question_description)
-                Question.objects.create(question_text=question_description,industry_id=industry)
+                Question.objects.create(question_text=question_description,industry_id=industry_id)
          # "redirect" to the industry page
         return redirect('industry',industry_id=industry_id)
 

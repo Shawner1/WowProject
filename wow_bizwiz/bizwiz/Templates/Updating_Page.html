@@ -1,24 +1,19 @@
-<a href="{% url 'home'%}">
-{% load static %}
-<img src="{% static 'Home.png' %}" alt="Home">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</a>
-
-{% load static %}
-<img src="{% static 'Wiz.png' %}" height="90" width="95" alt="BizWiz">
-
-
 <center>
-    <h1>Question Clicked On Last Page:<br />
-        Question 10
+    <h1>Question {{question.id}}
+        {{question.question_text}}<br />
+    {{answer.answer_text}}<br />
     </h1>
     </center>
 
-    <center
-    <label for="update_answ"><h2>Update Here:</label>
-        <input type="text" id="update_answ" name="update_answ" placeholder="Update Answer from the user">
-        <input type="submit" value="Submit">
+    <center>
+    <form action="{% url 'updating_page' industry.id question.id answer.id %}" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="save" value="Save" />
+        <input type="submit" name="delete" value="Delete" />
+    </form>
     </center>
 
-    <a href=type=>Go Back</a>
+    <a href="{% url 'specific_question' industry.id question.id %}">Go Back</a>
 
 

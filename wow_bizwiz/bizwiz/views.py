@@ -52,17 +52,13 @@ class Specific_QuestionView(View):
             if form.is_valid():
                 answer_description = form.cleaned_data['answer']
                 Answer.objects.create(answer_text=answer_description,question=question)
-            
+
         # "redirect" to the specific question page
         return redirect('specific_question',industry_id=industry_id,question_id=question_id)
 
 # Page_for_Tags views should display industries that relate to the tag selected **Doesn't take in any info from the user**
 class Page_for_TagsView(View):
-    def get(self, request,tag_id):
-
-        return render(
-            request=request, template_name = 'Page_for_Tags.html', context = {}
-        )
+	@@ -37,8 +66,22 @@ def get(self, request,tag_id):
 # Updating_Page views should taken in a form to update answers to specific questions
 class Updating_PageView(View):
     def get(self, request,industry_id,question_id,answer_id):

@@ -1,85 +1,38 @@
-<a href="{% url 'home'%}">
-{% load static %}
-<img src="{% static 'Home.jpg' %}" alt="Home">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</a>
-
-{% load static %}
-<img src="{% static 'Wiz.png' %}" height="90" width="95" alt="BizWiz">
-
-
 <center>
-<h1>{{industry.industry_name}}
-</h1>
-</center><br /><br /><br /><br />
-  
-<center>
-    <h2>Questions
-    </h2>
-     </center><br /><br /><br /><br />
-          <p>
-          <ol>
-           {% for questions in questions %}
-          <li>
-          <a href="{% url 'specific_question' industry.id questions.id %}">{{questions.question_text}}</a>
-          </li>
-           {% endfor %} 
-          </ol> 
-          </p>
-          <!--
-    <center>
-    <table>
-        <tr>
-          <td><a href=type=>Question1</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <td><a href=type=>Question6</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         </tr>
-      </table> 
-    </center><br /><br /><br /><br />
-
-    <center>
+  <h1>{{industry.industry_name}}
+  </h1>
+  </center><br /><br /><br /><br />
+    
+  <center>
+      <h2>Questions
+      </h2>
+       </center><br /><br /><br /><br />
+            <p>
+            <ol>
+             {% for questions in questions %}
+            <li>
+            <a href="{% url 'specific_question' industry.id questions.id %}">{{questions.question_text}}</a>
+            </li>
+             {% endfor %} 
+            </ol> 
+            </p>
+            <!--
+      <center>
       <table>
           <tr>
-            <td><a href=type=>Question2</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <td><a href=type=>Question7</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           </tr>
-        </table> 
-      </center><br /><br /><br /><br />
-
-      <center>
-        <table>
-            <tr>
-              <td><a href=type=>Question3</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <td><a href=type=>Question8</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-             </tr>
-          </table> 
-        </center><br /><br /><br /><br />
-
-        <center>
-          <table>
-              <tr>
-                <td><a href=type=>Question4</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <td><a href=type=>Question9</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               </tr>
-            </table> 
-          </center><br /><br /><br /><br />
-
-          <center>
-            <table>
-                <tr>
-                  <td><a href=type=>Question5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <td><a href=type=>Question10</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 </tr>
-              </table>  -->
-            </center><br /><br /><br /><br />
-
-
-            <form action="{% url 'industry' industry.id %}" method="POST">
-              {% csrf_token %}
-              {{ form }}
-              <input type="submit" name="save" value="Submit" />
-              
-             </form>
-            </center>
-            <a href="{% url 'home' %}">Go Back</a>
-
-
-
+    <h2>Questions
+                    <td><a href=type=>Question5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <td><a href=type=>Question10</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   </tr>
+                </table>  -->
+              </center><br /><br /><br /><br />
+  
+  
+              <form action="{% url 'industry' industry.id %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" name="save" value="Submit" />
+  
+               </form>
+              </center>
+              <a href="{% url 'home' %}">Go Back</a>

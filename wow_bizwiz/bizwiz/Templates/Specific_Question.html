@@ -19,9 +19,9 @@
   <center>
           <p>
           <ol>
-          {% for answer in answers %}
+          {% for answers in answer %}
           <li>
-          <a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}}</a>
+          <a href="{% url 'updating_page' industry.id question.id answers.id %}">{{answers.answer_text}}</a>
           </li>
           {% endfor %}
           </ol> 

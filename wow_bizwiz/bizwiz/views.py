@@ -18,9 +18,10 @@ class IndustryView(View):
     def get(self, request, industry_id):
         industry= Industry.objects.get(id=industry_id)
         question= Question.objects.all()
+        questions= Question.objects.filter(industry_id=industry_id)
         form = QuestionForm(initial={'question_text': Question.question_text})
         return render(
-            request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question}
+            request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question,'questions':questions}
         )
     def post(self, request, industry_id):
         '''post questions based on what the user submitted in the form'''
@@ -37,10 +38,11 @@ class Specific_QuestionView(View):
     def get(self,request,industry_id, question_id):
         question= Question.objects.get(id=question_id)
         industry= Industry.objects.get(id=industry_id)
-        answers= Answer.objects.all()
+        answer= Answer.objects.all()
+        answers= Answer.objects.filter(question_id=question_id)
         form = AnswerForm(initial={'answer_text': Answer.answer_text})
         return render(
-            request=request, template_name= 'Specific_Question.html', context={"form":form,"question":question, "industry":industry, "answers":answers}
+            request=request, template_name= 'Specific_Question.html', context={"form":form,"question":question, "industry":industry, "answers":answers,"answer":answer}
         )
     def post(self, request, industry_id,question_id):
         '''Create the answers based on what the user submitted in the form'''
@@ -74,8 +76,6 @@ class Updating_PageView(View):
     def post(self, request, answer_id,industry_id,question_id):
         '''Update or delete the specific answers based on what the user submitted in the form'''
         answer = Answer.objects.filter(id=answer_id)
-        industry = Industry.objects.get(id=industry_id)
-        question = Question.objects.get(id=question_id)
         if 'save' in request.POST:
             form = Updating_PageForm(request.POST)
             if form.is_valid():

@@ -18,11 +18,11 @@
      </center><br /><br /><br /><br />
           <p>
           <ol>
-          {% for questions in questions %}
+           {% for questions in questions %}
           <li>
-          <a href="{% url 'specific_question' industry.id question.id %}">{{question.question_text}}</a>
+          <a href="{% url 'specific_question' industry.id questions.id %}">{{questions.question_text}}</a>
           </li>
-          {% endfor %}
+           {% endfor %} 
           </ol> 
           </p>
           <!--
@@ -77,8 +77,9 @@
               {{ form }}
               <input type="submit" name="save" value="Submit" />
               
-          </form>
-          </center>
+             </form>
+            </center>
+            <a href="{% url 'home' %}">Go Back</a>
 
 
 

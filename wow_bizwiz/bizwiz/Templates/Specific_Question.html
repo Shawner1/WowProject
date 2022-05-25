@@ -1,24 +1,28 @@
 <center>
-  <h1>{{question.question_text}}<br /><br />
-       <br /><br />
 
-  </h1>
+  <h1>
+    Question&nbsp;{{question.id}}.&nbsp;{{question.question_text}}<br /><br /><br /><br /> </h1>
 
 </center>
 
 <center>
   <p>
   <ol>
-  {% for answers in answer %}
-  <li>
-  <a href="{% url 'updating_page' industry.id question.id answers.id %}">{{answers.answer_text}}</a>
-  </li>
+  {% for answer in answers %}
+  <li><a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}}</a></li>
   {% endfor %}
   </ol> 
   </p>
-</center>
+</center>    
 
-        
+<form action="{% url 'specific_question' industry.id question.id %}" method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" name="save" value="Submit" />
+
+ </form>
+</center>
+<a href="{% url 'home' %}">Go Back</a>
 
 
 

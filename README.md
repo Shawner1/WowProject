@@ -30,6 +30,8 @@ B) execute: python manage.py runserver
 
 C) finally: http://127.0.0.1:8000/ taking you to the home page. Now you're in business.
 
+Remember, don't imitate other people's success, instead imitate thier systems. With BizWiz, you'll learn what it takes to truly be successful.
+-------------------------------------------------------------------------------------------
 Group Members:
 -------------------------------------------------
 Darien Davis 

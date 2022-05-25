@@ -1,4 +1,3 @@
-from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.views import View
 from bizwiz.models import *
@@ -58,7 +57,9 @@ class Specific_QuestionView(View):
 
 # Page_for_Tags views should display industries that relate to the tag selected **Doesn't take in any info from the user**
 class Page_for_TagsView(View):
-	@@ -37,8 +66,22 @@ def get(self, request,tag_id):
+    def get(self, request,tag_id):
+        tag=Tag.objects.get(id=tag_id)
+        
 # Updating_Page views should taken in a form to update answers to specific questions
 class Updating_PageView(View):
     def get(self, request,industry_id,question_id,answer_id):

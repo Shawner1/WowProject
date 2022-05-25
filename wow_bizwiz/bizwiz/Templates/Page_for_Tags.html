@@ -6,42 +6,15 @@
 {% load static %}
 <img src="{% static 'Wiz.png' %}" height="90" width="95" alt="BizWiz">
 
-
-  <center>
-    <h1>Tag Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10
-    </h1>
-    </center><br /><br /><br /><br />
-
+<center><h1> Industries related to {{tags.tag_name}}</h1></center>
   
-
-    <center>
-    <table>
-        <tr>
-          <td><a href=type=>Industry Namr</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </tr>
-      </table> 
-    </center><br /><br /><br /><br />
-
-    <center>
-      <table>
-          <tr>
-            <td><a href=type=>Industry Name</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           </tr>
-        </table> 
-      </center><br /><br /><br /><br />
-
-      <center>
-        <table>
-            <tr>
-              <td><a href=type=>Industry Namr</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </tr>
-          </table> 
-        </center><br /><br /><br /><br />
-    
-        <center>
-          <table>
-              <tr>
-                <td><a href=type=>Industry Name</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               </tr>
-            </table> 
-          </center><br /><br /><br /><br />
+<center>
+   {% for industry in industry %} 
+   <table>
+      <tr>
+        <td><a href="{% url 'industry' industry.id %}"> {{industry.industry_name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       </tr>
+    </table> 
+    {% endfor %}
+  </center><br /><br /><br /><br />
+  <a href="{% url 'home' %}">Go Back</a>

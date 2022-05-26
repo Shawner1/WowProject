@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.test import tag
 from django.views import View
 from bizwiz.models import *
 from bizwiz.forms import *
@@ -10,9 +9,8 @@ from bizwiz.forms import *
 class HomeView(View):
     def get(self, request):
         industries= Industry.objects.all()
-        tag=Tag.objects.all()
         return render(
-            request=request, template_name = 'home.html', context = {"industries":industries,"tag":tag}
+            request=request, template_name = 'home.html', context = {"industries":industries}
         )
 # Industry views should display industry with its questions and take in a form to add questions
 class IndustryView(View):
@@ -59,12 +57,8 @@ class Specific_QuestionView(View):
 
 # Page_for_Tags views should display industries that relate to the tag selected **Doesn't take in any info from the user**
 class Page_for_TagsView(View):
-    def get(self, request,tag_id):
-        tags=Tag.objects.get(id=tag_id)
-        industry= Industry.objects.filter(tags=tag_id)
-        return render(
-             request=request, template_name= 'page_for_tags.html', context={"tags":tags,"industry":industry}
-        )
+    def get(self, request, tag_id):
+        tag=Tag.objects.get(id=tag_id)
         
 # Updating_Page views should taken in a form to update answers to specific questions
 class Updating_PageView(View):
@@ -72,7 +66,9 @@ class Updating_PageView(View):
         answer = Answer.objects.get(id=answer_id)
         industry = Industry.objects.get(id=industry_id)
         question = Question.objects.get(id=question_id)
-        form = Updating_PageForm(initial={'answer_text': Answer.answer_text})
+       
+        form = Updating_PageForm(initial={'update': answer.answer_text})
+        print(answer.answer_text)
         return render(
             request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question}
         )

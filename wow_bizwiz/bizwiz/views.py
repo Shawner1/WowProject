@@ -72,7 +72,7 @@ class Updating_PageView(View):
         answer = Answer.objects.get(id=answer_id)
         industry = Industry.objects.get(id=industry_id)
         question = Question.objects.get(id=question_id)
-        form = Updating_PageForm(initial={'answer_text': Answer.answer_text})
+        form = Updating_PageForm(initial={'update': answer.answer_text})
         return render(
             request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question}
         )

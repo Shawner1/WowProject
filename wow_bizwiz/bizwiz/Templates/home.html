@@ -1,64 +1,19 @@
 <center>
-{% load static %}
-<img src="{% static 'Wiz.png' %}" height="125" width="135" alt="BizWiz">
-</center>
-
-
-<h1 style="text-align:center;">Industries</h1><br /><br />
-
-<ul>
-  {% for industry in industries %}
-  <li>
+  {% load static %}
+  <img src="{% static 'Wiz.jpg' %}" height="185" width="195" alt="BizWiz">
+  </center><br><br>
+  <h1 style="text-align:center;">Industries</h1>
+  <center>
+    {% for industry in industries %}
+    <div>
+            <br><button type="button">
     <a href="{% url 'industry' industry.id %}">{{industry.industry_name}} </a>
-  </li>
-  {% endfor %}
-</ul>
-<!-- <center> 
-  <table>
-    <tr>
-      <th>
-       
-    <button type="button">Finance</button></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    <button type="button">Auto Manufactoring</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button type="button">Oil & Gas</button>
-    
-  </tr>
-</table>
+    </button>
+  </div>
+    {% endfor %}
+  </div><br>
+</center><br>
 
-
-<br /><br /><br />
-
-
-  <table>
-    <tr>
-      <th>
-        <button type="button">Real Estate</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button">E-Commerce</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="button">Construction</button>
-        
-</table>
-  </tr>
-</table>
-  
-  <br /><br /><br />
-
-    
-  
-        <table>
-          <tr>
-            <th>
-            <button type="button">Health Care</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button">Information Technology</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button">Food</button>
-            
-          </tr>
-        </table>
-        
-      
-    </table>
-    <br /><br /><br />
-   
- -->
 <center>
 {% for tag in tag %}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

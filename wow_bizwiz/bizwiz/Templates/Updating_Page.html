@@ -1,3 +1,10 @@
+<a href="{% url 'home' %}">
+    {% load static %}
+    <img src="{% static 'Home.jpg' %}" height="85" width="80" alt="Home" . /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </a>
+    {% load static %}
+    <img src="{% static 'Wiz.jpg' %}" height="140" width="135" alt="BizWiz" />
+    
 <center>
     <h1>Question {{question.id}}
         {{question.question_text}}<br />

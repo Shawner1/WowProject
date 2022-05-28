@@ -1,10 +1,17 @@
- <h1>{{industry.industry_name}}</h1>
-  </center><br /><br /><br /><br />
-    
+<a href="{% url 'home' %}">
+  {% load static %}
+  <img src="{% static 'Home.jpg' %}" height="85" width="80" alt="Home" . /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </a>
+  {% load static %}
+  <img src="{% static 'Wiz.jpg' %}" height="140" width="135" alt="BizWiz" />
   <center>
+<h1>{{industry.industry_name}}</h1>
+<br /><br /><br /><br />
+    
+  
       <h2>Questions
       </h2>
-       </center><br /><br /><br /><br />
+       <br /><br /><br /><br />
             <p>
             <ol>
              {% for questions in questions %}
@@ -14,16 +21,8 @@
              {% endfor %} 
             </ol> 
             </p>
-            <!--
-      <center>
-      <table>
-          <tr>
-    <h2>Questions
-                    <td><a href=type=>Question5</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <td><a href=type=>Question10</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   </tr>
-                </table>  -->
-              </center><br /><br /><br /><br />
+            
+              <br /><br /><br /><br />
   
   
               <form action="{% url 'industry' industry.id %}" method="POST">
@@ -32,5 +31,6 @@
                 <input type="submit" name="save" value="Submit" />
   
                </form>
-              </center>
+              
+            </center>
               <a href="{% url 'home' %}">Go Back</a>

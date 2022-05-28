@@ -9,9 +9,9 @@ from bizwiz.forms import *
 class HomeView(View):
     def get(self, request):
         industries= Industry.objects.all()
-        tags=Tag.objects.all()
+        tag=Tag.objects.all()
         return render(
-            request=request, template_name = 'home.html', context = {"industries":industries,"tags":tags}
+            request=request, template_name = 'home.html', context = {"industries":industries,"tag":tag}
         )
 # Industry views should display industry with its questions and take in a form to add questions
 class IndustryView(View):

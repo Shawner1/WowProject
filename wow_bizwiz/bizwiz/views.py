@@ -55,7 +55,7 @@ class Specific_QuestionView(View):
         # "redirect" to the specific question page
         return redirect('specific_question',industry_id=industry_id,question_id=question_id)
 
-# Page_for_Tags views should display industries that relate to the tag selected **Doesn't take in any info from the user**
+# Page_for_Tags views should display industries that relate to the tag selected and navigate to page **Doesn't take in any info from the user**
 class Page_for_TagsView(View):
     def get(self, request, tag_id):
         tag=Tag.objects.get(id=tag_id)

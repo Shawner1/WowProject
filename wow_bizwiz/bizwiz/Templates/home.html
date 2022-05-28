@@ -15,7 +15,7 @@
 </center><br>
 
 <center>
-{% for tag in tag %}
+{% for tag in tags %}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 {% endfor %}
 </center>

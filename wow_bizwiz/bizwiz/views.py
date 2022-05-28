@@ -9,8 +9,9 @@ from bizwiz.forms import *
 class HomeView(View):
     def get(self, request):
         industries= Industry.objects.all()
+        tags=Tag.objects.all()
         return render(
-            request=request, template_name = 'home.html', context = {"industries":industries}
+            request=request, template_name = 'home.html', context = {"industries":industries,"tags":tags}
         )
 # Industry views should display industry with its questions and take in a form to add questions
 class IndustryView(View):
@@ -57,8 +58,12 @@ class Specific_QuestionView(View):
 
 # Page_for_Tags views should display industries that relate to the tag selected and navigate to page **Doesn't take in any info from the user**
 class Page_for_TagsView(View):
-    def get(self, request, tag_id):
-        tag=Tag.objects.get(id=tag_id)
+    def get(self, request,tag_id):
+        tags=Tag.objects.get(id=tag_id)
+        industry= Industry.objects.filter(tags=tag_id)
+        return render(
+             request=request, template_name= 'page_for_tags.html', context={"tags":tags,"industry":industry}
+        )
         
 # Updating_Page views should taken in a form to update answers to specific questions
 class Updating_PageView(View):

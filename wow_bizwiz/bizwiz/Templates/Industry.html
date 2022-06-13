@@ -12,15 +12,21 @@
       <h2>Questions
       </h2>
        <br /><br /><br /><br />
-            <p>
+            
             <ol>
-             {% for questions in questions %}
+             {% for question in questions %}
             <li>
-            <a href="{% url 'specific_question' industry.id questions.id %}">{{questions.question_text}}</a>
+            <h3>
+            <a href="{% url 'specific_question' industry.id question.id %}">{{question.question_text}}</a> <h6>({{question.answer_set.count}})answers</h6>
+            </h3>
+            <p>
+             {{question.answer_set.first.answer_text}}
+             
+            </p>
             </li>
              {% endfor %} 
             </ol> 
-            </p>
+            
             
               <br /><br /><br /><br />
   

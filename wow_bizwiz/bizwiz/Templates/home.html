@@ -12,10 +12,8 @@
     <h1 class="title">Top Industries</h1>
       <div class ='industrygrid'>
         {% for industry in industries %}
-          <div class ='griditem'>
-            <button class = "button buttonhighlight" type ="button">
-              <a class = "buttontext" href="{% url 'industry' industry.id %}">{{industry.industry_name}} </a>
-            </button>
+          <div class ='griditem
+              <a class = " button buttonhighlight buttonact buttontext " href="{% url 'industry' industry.id %}">{{industry.industry_name}} </a>
           </div>
         {% endfor %}
       </div>

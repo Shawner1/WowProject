@@ -1,27 +1,33 @@
-<center>
-  {% load static %}
-  <img src="{% static 'Wiz.jpg' %}" height="185" width="195" alt="BizWiz">
-  </center><br><br>
-  <h1 style="text-align:center;">Industries</h1>
-  <center>
-    {% for industry in industries %}
-    <div>
-            <br><button type="button">
-    <a href="{% url 'industry' industry.id %}">{{industry.industry_name}} </a>
-    </button>
+<html>
+  <head>
+    {% load static %}
+      <link rel = "stylesheet" href ="{% static 'style.css' %}" >
+  </head>
+
+  <body>
+    <div class="form">
+      <img src ="{% static 'WizTransparent.png' %}" height ="185" width ="195" alt ="BizWiz" >
+    <h1 class="title">Top Industries</h1>
+      <div class ='industrygrid'>
+        {% for industry in industries %}
+          <div class ='griditem'>
+            <button class = "button buttonhighlight" type ="button">
+              <a class = "buttontext" href="{% url 'industry' industry.id %}">{{industry.industry_name}} </a>
+            </button>
+          </div>
+        {% endfor %}
+      </div>
   </div>
-    {% endfor %}
-  </div><br>
-</center><br>
+  </body>
+  <footer>
+    <div class = "foot">
+      {% for tag in tag %}
+         <a href ="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>
+      {% endfor %}
+    </div>
+  </footer>
+</html>
 
-<center>
-
-{% for tag in tag %}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-{% endfor %}
-</center>
-</center>
 
     
 

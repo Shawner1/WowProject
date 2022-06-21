@@ -21,9 +21,9 @@ class HomeView(View):
 # Industry views should display industry with its questions and take in a form to add questions
 class IndustryView(View):
     def get(self, request, industry_id):
-        industry= Industry.objects.get(id=industry_id)
+        industry= Industry.objects.get(id = industry_id)
         question= Question.objects.all()
-        questions= Question.objects.filter(industry_id=industry_id)
+        questions= Question.objects.filter(industry_id = industry_id)
         form = QuestionForm(initial={'question_text': Question.question_text})
         return render(
             request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question,'questions':questions}

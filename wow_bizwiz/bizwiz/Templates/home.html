@@ -1,25 +1,8 @@
-<center>
-  {% load static %}
-  <img src="{% static 'Wiz.jpg' %}" height="185" width="195" alt="BizWiz">
-  </center><br><br>
-  <h1 style="text-align:center;">Industries</h1>
-  <center>
-    {% for industry in industries %}
-    <div>
-            <br><button type="button">
-    <a href="{% url 'industry' industry.id %}">{{industry.industry_name}} </a>
-    </button>
-  </div>
+<html>
+  <head>
+    {% load static %}
+      <link rel = "stylesheet" href ="{% static 'style.css' %}" >
     {% endfor %}
-  </div><br>
-</center><br>
-
-<center>
-
-{% for tag in tag %}
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-{% endfor %}
 </center>
 </center>
 <body>
@@ -41,9 +24,36 @@
   <button type="submit"> <a href="/signup">SignUp</a></button>
   <button type="submit"> <a href="/signin">SignIn</a></button>
   {% endif %}
-
   <script src="" async defer></script></script>
-</body>
+  </head>
+
+  <body>
+    <div class="form">
+      <div class ="rotate">
+      <img src ="{% static 'WizTransparent.png' %}" height ="185" width ="195" alt ="BizWiz" >
+      </div>
+    <h1 class="title">Top Industries</h1>
+      <div class ='industrygrid'>
+        {% for industry in industries %}
+          <div class ='griditem
+              <a class = " button buttonhighlight buttonact buttontext " href="{% url 'industry' industry.id %}">{{industry.industry_name}} </a>
+          </div>
+        {% endfor %}
+      </div>
+  </div>
+  </body>
+  <footer>
+    <div class = "foot">
+      {% for tag in tag %}
+         <a href ="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>
+      {% endfor %}
+    </div>
+  </footer>
+</html>
+
+
+  
+
     
 
 

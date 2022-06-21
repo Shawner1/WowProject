@@ -1,23 +1,24 @@
-<a href="{% url 'home' %}">
+  <html>
+  <head>
   {% load static %}
-  <img src="{% static 'Home.png' %}" height="85" width="80" alt="Home" . /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </a>
-  {% load static %}
-  <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
-  <center>
-<center>
-  <h1> Question&nbsp;{{question.id}}.&nbsp;{{question.question_text}}<br /><br /><br /><br /> </h1>
-</center>
+<link rel= "stylesheet" href="{% static 'style.css' %}" >
+ <a class ="fix" href="{% url 'home' %}">
 
-<center>
-  <p>
+  <img src="{% static 'Home.png' %}" height="50" width="50" alt="Home" />
+  </a>
+
+  <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
+</head>
+
+  <h1 class="form"> Question {{question.id}}. {{question.question_text}}</h1>
+<div class="questions">
   <ol>
-  {% for answer in answers %}
-  <li><a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}}</a></li>
-  {% endfor %}
+   {% for answer in answers %}
+     <li class = "answerbox"> <a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}} </a><p>{{answer.dateposted}}</p></li>
+   {% endfor %}
   </ol> 
-  </p>
-</center>    
+</div>
+   
 
 <form action="{% url 'specific_question' industry.id question.id %}" method="POST">
   {% csrf_token %}
@@ -25,11 +26,9 @@
   <input type="submit" name="save" value="Submit" />
 
  </form>
-</center>
-<a href="{% url 'industry' industry.id %}">Go Back</a>
 
-
-
+<a class="form" href="{% url 'industry' industry.id %}">Go Back</a>
+</html>
          
    
   

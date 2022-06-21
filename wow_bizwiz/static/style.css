@@ -43,6 +43,7 @@
     justify-content: center;
     margin-top: 2rem;
 }
+
 .button {
     border-radius: 8px;
     border-color: rgb(49, 135, 233);
@@ -53,58 +54,102 @@
     padding: 16px 32px;
     text-align: center;
     display: inline-block;
-    font-size: 18px;
+    font-size: 24px;
     margin: 4px 2px;
     transition-duration: 0.5s;
     cursor: pointer;
     width: 16rem;
-    height: 4rem;
+    height: 2rem;
     text-decoration: none;
-  }
-  .buttonhighlight:hover {
+    text-align: center;
+}
+
+.button2 {
+    border-radius: 8px;
+    border-color: rgb(49, 135, 233);
+    background-color: white;
+    border-style:solid ;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    color: purple;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    transition-duration: 0.5s;
+    cursor: pointer;
+    width: 15rem;
+    height: 2rem;
+    text-decoration: none;
+    text-align: center;
+    te
+}
+
+.buttonhighlight:hover {
     background-color: purple;
     border: none;
     text-emphasis-color: white;
     padding: 16px 32px;
     text-align: center;
     text-decoration: none;
-  }
+}
 
-  .buttontext{
+.buttonact:active{
+    background-color: orangered;
+}
+
+.buttontext{
     text-decoration: none;
-     color: black;
-  }
+    color: black;
 
-  .foot{
-      margin-top: 1rem;
-      text-align: center;
-      word-spacing: 4rem;
-  }
+}
 
-  @keyframes rotate{
-        from {transform: rotate(0deg)}
-        to {transform: rotate(360deg)}
-  }
+.foot{
+    margin-top: 1rem;
+    text-align: center;
+    word-spacing: 4rem;
+}
 
-  .rotate:hover{
+@keyframes rotate{
+    from {transform: rotate(0deg)}
+    to {transform: rotate(360deg)}
+}
+
+.rotate:hover{
     animation-name: rotate;
     animation-duration: 1s;
     animation-iteration-count: 3;
     animation-timing-function: ease-in-out;
 
 
+}
+
+.fix{
+    transform: translate(10rem);
+    text-align: left;
+    text-decoration: none;
+}
+
+.answerbox{
+    display: list-item;
+    list-style-position: inside;
+    text-align: center;
+    list-style: upper-roman;
+    border-radius: 8px;
+    background-color: darkgray;
+    width: 15rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
-
-
-
 /* *,*::before,*::after{
     box-sizing: border-box;
 } */
 
- /* html,body{
+/* html,body{
     margin: 0px;
     padding: 5px;
-}  */
+}   */
 
 /* h2.form::after{
     content: " ";

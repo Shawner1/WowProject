@@ -2,8 +2,8 @@
 <head>
   {% load static %}
   <link rel= "stylesheet" href="{% static 'style.css' %}" >
-<a href="{% url 'home' %}">
-<img src="{% static 'Home.png' %}" height="50" width="50" alt="Home" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a class = "fix form" href="{% url 'home' %}">
+<img src="{% static 'Home.png' %}" height="50" width="50" alt="Home" /> 
 </a>
 <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
 </head>
@@ -20,7 +20,7 @@
               {% for question in questions %}
               <li class="list">
               <h3>
-                <a  href="{% url 'specific_question' industry.id question.id %}">{{question.question_text}}</a></h3> 
+                <a  href="{% url 'specific_question' industry.id question.id %}">{{question.question_text}}</a>{{question.dateposted}}</h3> 
                   <h6 
                   class= 'form'>({{question.answer_set.count}})answers</h6> 
                 <p 

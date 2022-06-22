@@ -3,12 +3,12 @@
     {% load static %}
       <link rel = "stylesheet" href ="{% static 'style.css' %}" >
   </head>
-
   <body>
-    <div class="form">
+    <div class="form" style="margin-top: -8mm;">
       <div class ="rotate">
-      <img src ="{% static 'WizTransparent.png' %}" height ="185" width ="195" alt ="BizWiz" >
+        <img src ="{% static 'WizTransparent.png' %}" height ="175" width ="185" alt ="BizWiz" >
       </div>
+      
     <h1 class="title">Top Industries</h1>
       <div class ='industrygrid'>
         {% for industry in industries %}
@@ -17,14 +17,33 @@
           </div>
         {% endfor %}
       </div>
-  </div>
+     </div>
   </body>
   <footer>
-    <div class = "foot">
-      {% for tag in tag %}
-         <a href ="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>
-      {% endfor %}
-    </div>
+      <div class="foot">
+        {% for tag in tag %}
+          <a href ="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>
+        {% endfor %}
+      </div>
+      <div class="form">
+      <div class= "row">
+        <div class="rotate" style="transform: translate(1rem,-.4mm); margin-top: 0mm; margin-bottom: 0mm;">
+          <a href ="https://twitter.com/BizWiz000 ">
+            <img src ="{% static 'Twitter Logo.png' %}" height ="52" width ="54" alt ="Twitter" >
+          </a>
+        </div>
+        <div class="rotate" style="transform: translate(0rem,1.5mm);">
+          <a  href ="https://www.instagram.com/bizwiz111/">
+           <img src ="{% static 'Instagram Logo.png' %}" height ="37" width ="39" alt ="Instagram" >
+          </a>
+        </div>
+       <div class="rotate" style="transform: translate(-1rem,-1mm);">
+          <a href ="https://www.facebook.com/profile.php?id=100081355037787 ">
+           <img src ="{% static 'Facebook Logo.png' %}" height ="56" width ="55" alt ="Facebook" >
+          </a>
+          </div>
+        </div>
+      </div>
   </footer>
 </html>
 

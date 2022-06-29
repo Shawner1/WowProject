@@ -1,20 +1,24 @@
-<a href="{% url 'home'%}">
+<html<head>
 {% load static %}
-<img src="{% static 'Home.png' %}" alt="Home">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<link rel= "stylesheet" href="{% static 'style.css' %}" >
+<div style="margin-bottom: 2rem;">
+<a class="fix" href="{% url 'home'%}">
+<img src="{% static 'Home.png' %}" height="50" width="50" alt="Home">
 </a>
-
-{% load static %}
-<img src="{% static 'WizTransparent.png' %}" height="90" width="95" alt="BizWiz">
-
-<center><h1> Industries related to {{tags.tag_name}}</h1></center>
-  
-<center>
-   {% for industry in industry %} 
-   <table>
-      <tr>
-        <td><a href="{% url 'industry' industry.id %}"> {{industry.industry_name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-       </tr>
-    </table> 
-    {% endfor %}
-  </center><br /><br /><br /><br />
-  <a href="{% url 'home' %}">Go Back</a>
+</div>
+<div class="form" style="translate: 20px;">
+<img src="{% static 'WizTransparent.png' %}" height="150" width="150" alt="BizWiz">
+</div>
+</head>
+<body> 
+<h1 class= "form"> Industries related to {{tags.tag_name}}</h1>
+{% for industry in industry %} 
+<div class="form">
+<a class= "button2 buttonhighlight buttonact buttontext" href="{% url 'industry' industry.id %}"> {{industry.industry_name}}</a><br>
+</div>
+{% endfor %}
+</body>
+<footer>
+<a class= "form" href="{% url 'home' %}">Go Back</a>
+</footer>
+</html>

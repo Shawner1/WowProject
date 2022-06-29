@@ -1,29 +1,26 @@
   <html>
   <head>
-  {% load static %}
-<link rel= "stylesheet" href="{% static 'style.css' %}" >
- <a class ="fix" href="{% url 'home' %}">
-
-  <img src="{% static 'Home.png' %}" height="50" width="50" alt="Home" />
-  </a>
-
-  <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
-</head>
-
-  <h1 class="form"> Question {{question.id}}. {{question.question_text}}</h1>
-
-<div class="questions">
+    {% load static %}
+    <link rel= "stylesheet" href="{% static 'style.css' %}" >
+    <a class ="fix" href="{% url 'home' %}">
+      <img src="{% static 'Home.png' %}" height="50" width="50" alt="Home" />
+    </a>
+    <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
+  </head>
+<body>
+    <h1  class= "form" > {{question.id}}. {{question.question_text}}</h1>
   
+    <div class="questions">
   <ol div class="answergrid">
-   {% for answer in answers %}
+    {% for answer in answers %}
     <div class="griditem1 button3 ">
-       <li class="buttontext2" > <a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}} </a>
+        <li class="buttontext3" > <a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}} </a>
         <p class="dateposted preview ">author: username date posted: {{answer.dateposted}}</p></li>
     </div>
-   {% endfor %}
+    {% endfor %}
   </ol> 
-</div>
-
+  </div>
+</body>
 
 <form action="{% url 'specific_question' industry.id question.id %}" method="POST">
   {% csrf_token %}

@@ -6,33 +6,38 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        {% load static %}
+        <link rel= "stylesheet" href="{% static 'style.css' %}" >
+        <div class="form" style=" padding: 0%; margin: 0%;">
+        <a>  
+        <img src="{% static 'WizTransparent.png' %}" height="250" width="250" alt="BizWiz" />
+        </a></div>
     </head>
-    <body>
-        <h3>SignUp</h3>
-
+    <body style="transform: translate(0rem,-8rem) ; padding: 0%; margin: 0%;">
+        <h3 class = "form" style="transform: translate(0rem,3rem) ;">SignUp</h3>
+       <div style="text-align: center; white-space: pre-line; margin-top: -4mm; ">
         <form action="/signup" method="post">
         {% csrf_token %}
             <label for="">Username</label>
-            <input type="text" id="username" name="username" placeholder="Create a username (only letters and numbers)" Required>
-            <br>
+            <input type="text" id="username" name="username" placeholder="Create a username " Required> 
+            
             <label for="">First Name</label>
             <input type="text" id="fname" name="fname" placeholder="Enter Your First Name" Required>
-            <br>
+            
             <label for="">Last Name</label>
             <input type="text" id="lname" name="lname" placeholder="Enter Your Last Name" Required>
-            <br>
+            
             <label for="">Email Address</label>
             <input type="email" id="email" name="email" placeholder="Enter Your Email Address" Required>
-            <br>
+            
             <label for="">Password</label>
             <input type="password" id="pass1" name="pass1" placeholder="Create a Password" Required>
-            <br>
+            
             <label for="">Confirm your password</label>
             <input type="password" id="pass2" name="pass2" placeholder="Confirm Your Password" Required>
-            <br>
+            
             <button type="submit">Sign Up</button>
-
+        </div>
         </form>
     </body>
 </html>

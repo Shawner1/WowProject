@@ -91,12 +91,14 @@ class Updating_PageView(View):
             answer.delete()
         # "redirect" to the specific question page
         return redirect('specific_question',industry_id=industry_id,question_id=question_id)
+        
     
-    #views fot logging in
-    def landing(request):
-        return render(request, "Industry.html")
 
-    def signup(request):
+#views fot logging in  
+def landing(request):
+        return render(request, "signup.html")
+
+def signup(request):
 
         if request.method =="POST":
             username = request.POST['username']
@@ -121,7 +123,7 @@ class Updating_PageView(View):
         return render(request, "signup.html")
 
 
-    def signin(request):
+def signin(request):
 
         if request.method == 'POST':
             username = request.POST['username']
@@ -141,7 +143,7 @@ class Updating_PageView(View):
         return render(request, "signin.html")
 
 
-    def signout(request):
+def signout(request):
         logout(request)
         messages.success(request, "Logged Out Sucessfully!")
-        return redirect('homee')
+        return redirect('home')

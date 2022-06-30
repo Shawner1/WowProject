@@ -7,8 +7,8 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
- path('', HomeView.as_view(), name='home'),
-path('', views.landing, name="landing"),
+ path('', views.landing, name="landing"),
+ path('home', HomeView.as_view(), name='home'),
  path('signup', views.signup, name="signup"),
  path('signin', views.signin, name="signin"),
  path('signout', views.signout, name="signout"),

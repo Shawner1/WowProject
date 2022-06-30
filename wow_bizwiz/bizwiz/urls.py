@@ -1,9 +1,14 @@
 from django.urls import path
 from bizwiz.views import * 
+from django.urls import path
+from bizwiz.views import * 
+from django.contrib import admin
+from django.urls import path, include
+from . import views
 
 urlpatterns = [
  path('', HomeView.as_view(), name='home'),
-path('', views.homee, name="landing"),
+path('', views.landing, name="landing"),
  path('signup', views.signup, name="signup"),
  path('signin', views.signin, name="signin"),
  path('signout', views.signout, name="signout"),

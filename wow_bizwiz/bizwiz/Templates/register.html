@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        <link rel= "stylesheet" href="{% static 'style.css' %}" >
+        <div class="form" style=" line-height: 0%;">
+        <a>  
+        <img src="{% static 'WizTransparent.png' %}" height="250" width="250" alt="BizWiz" />
+        </a></div>
+    </head>
+    <body  style="transform: translate(0rem,-3rem) ;">
+        <h3 class = "form" style="transform: translate(0rem,2rem) ;">SignUp</h3>
+       <div style="text-align: center; white-space: pre-line; margin-top: -4mm; line-height: 3.5mm;">
+        <form method="POST" action="" >
+            {% csrf_token %}
+            {% for field in form %}
+            {{field.label}}
+            {{field }}
+            {% endfor %}
+            {{form.errors}}
+            <input type="submit" name="Create User">
+       </form>
+       <div class="form " style=" white-space: break-spaces;"> <p> Already Have An Account ? </p>
+        <a href="{% url 'signin' %}"> Sign In Here </a> </div>
+    </div>
+    </body>
+</html>

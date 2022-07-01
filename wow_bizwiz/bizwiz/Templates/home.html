@@ -8,6 +8,8 @@
       <div class ="rotate">
         <img src ="{% static 'WizTransparent.png' %}" height ="175" width ="185" alt ="BizWiz" >
       </div>
+      <span> Hello, </span>
+      <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
       
     <h1 class="title">Top Industries</h1>
       <div class ='industrygrid'>
@@ -20,6 +22,9 @@
      </div>
   </body>
   <footer>
+       {% for message in messages %} 
+        <p>{{message}}</p>
+        {% endfor %}
       <div class="foot">
         {% for tag in tag %}
           <a href ="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>

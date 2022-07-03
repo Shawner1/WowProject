@@ -2,21 +2,17 @@
   <head>
     {% load static %}
       <link rel = "stylesheet" href ="{% static 'style.css' %}" >
-  </head>
-  <body>
-    <div class="form" style="margin-top: -8mm;">
+     <div class="form" style="margin-top: -8mm;">
       <div class ="rotate">
         <img src ="{% static 'WizTransparent.png' %}" height ="175" width ="185" alt ="BizWiz" >
       </div>
-      <div style="text-align:right; transform: translate(0mm,-10mm); white-space: pre-line;">
+      <div style="text-align:right; transform: translate(0mm,-15mm); white-space: pre-line;">
       <span> Hello, {{request.user}} </span>
       <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
-      <a style="background-color: white; border-radius: 8px;">
-      <img src="{% static 'profile icon.jpg' %}" height="50px" width="50px" alt="">
-      </a>
-    </div>
-      
-  <div  style='transform: translate(0mm,-40mm);'>
+    </div> 
+  </head>
+  <body>
+  <div  style='transform: translate(0mm,-15mm);'>
       <h1 class="title">Top Industries</h1>
         <div class ='industrygrid'>
           {% for industry in industries %}

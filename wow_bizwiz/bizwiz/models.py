@@ -21,11 +21,13 @@ class Question(models.Model):
     question_text= models.CharField(max_length=255)
     #Attribute in tbe model to connect the question text to a industry
     industry= models.ForeignKey( Industry,on_delete=models.CASCADE)#If industry is deleted all questions are deleted 
-    
+    dateposted = models.DateTimeField( auto_now= False, auto_now_add= True )#Time Posted
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #User as foreign key
 class Answer(models.Model):
     # An ID field is automatically added to all Django models
     #Attribute in tbe model to connect the answer text to a question
     answer_text= models.CharField(max_length=255)
     #Attribute in tbe model to connect the answer to a question
     question= models.ForeignKey(Question,on_delete=models.CASCADE)#If question is deleted answers are deleted
-    
+    dateposted = models.DateTimeField( auto_now= False, auto_now_add= True )#Time Posted
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #User as foreign key

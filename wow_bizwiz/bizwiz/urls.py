@@ -7,10 +7,10 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
- path('register/', views.registerPage, name="register"),
+ path('', views.registerPage, name='register'),
  path('home/', HomeView.as_view(), name='home'),
- path('signin/', views.signin, name="signin"),
- path('signout/', views.signout, name="signout"),
+ path('signin/', views.signin, name='signin'),
+ path('signout/', views.signout, name='signout'),
  path('industry/<int:industry_id>/', IndustryView.as_view(), name='industry'),
  path('question/<int:industry_id>/<int:question_id>/', Specific_QuestionView.as_view(), name= 'specific_question'),
  path('tags/<int:tag_id>/', Page_for_TagsView.as_view(), name='page_for_tags'),

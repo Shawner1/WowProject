@@ -1,5 +1,5 @@
 <html>
-<head>
+<head style="transform: translate(0mm,6mm);">
   {% load static %}
   <link rel= "stylesheet" href="{% static 'style.css' %}" >
 <a class="fix form" style="margin:1mm; margin-top:10px;" href="{% url 'home' %}">
@@ -8,13 +8,15 @@
 <a>
 <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
 </a>
+<div style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line;">
+  <span> Hello, {{request.user}} </span>
+  <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
+</div>
+<div style="transform: translate(0mm,-50mm);">
 </head>
-<body>
+<body> 
 <h1 class = 'title'> {{industry.industry_name}} </h1>
 
-
-
-    
       <div class = 'questions' style="text-align: center;">
         <h2 
           class = 'title'> Questions </h2>
@@ -25,7 +27,7 @@
                 <div class="buttontext3 overflowfix">
                 <a href="{% url 'specific_question' industry.id question.id %}">{{question.question_text}}</a> 
                 </div>
-                <p class="dateposted" style="margin:0%; "> author: username dateposted: {{question.dateposted}}</p></h3> 
+                <p class="dateposted" style="margin:0%; "> author: {{question.user}} dateposted: {{question.dateposted}}</p></h3> 
                   <h6 class= 'form' style="margin:0%; white-space: break-spaces; ">({{question.answer_set.count}})answers</h6> 
                 <p 
                   class= 'preview buttontext3' style="margin:0%; ">
@@ -65,4 +67,5 @@
           </div>
         </div>
       </div>
+    </div>
 </html>

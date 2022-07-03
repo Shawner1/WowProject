@@ -148,6 +148,3 @@ class Updating_PageView(View):
             answer.delete()
         # "redirect" to the specific question page
         return redirect('specific_question',industry_id=industry_id,question_id=question_id)
-        
-    
-

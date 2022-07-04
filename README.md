@@ -24,28 +24,23 @@ A) here: pip install django
 
 3.RUN THE DJANGO APLICATION:
 -------------------------------------------------
-A) do: navigate into your created Django project folder 1) cd [name of your directory]  2) cd wow_bizwiz
+A) do: navigate into your created Django project folder 
+1) cd [name of your directory]  
+2) cd wow_bizwiz
 
 B) execute: python manage.py runserver
 
-C) finally: http://127.0.0.1:8000/ taking you to the home page. Now you're in business.
+C) finally: http://127.0.0.1:8000/ taking you to the sign up/ sign in screen
 
-![Screenshot (1)](https://user-images.githubusercontent.com/98561284/177181040-b2d3a219-25b1-4bbe-a6c4-b266b3fef085.png)
-
-
-
-Remember, don't imitate other people's success, instead imitate thier systems. With BizWiz, you'll learn what it takes to truly be successful.
+![Screenshot (2)](https://user-images.githubusercontent.com/98561284/177223053-43e8654f-46fa-425d-a5b0-5e8bdf58134c.png)
+-------------------------------------------------------------------------------------------
+Remember, don't blindly imitate public success. Instead, imitate private systems: you know, the ones that made things successful in the first place. You'll learn that here with BizWiz.
 -------------------------------------------------------------------------------------------
 Group Members:
 -------------------------------------------------
 Darien Davis 
-
 https://github.com/DDavis-CP
-
 Sanford Barber 
-
 https://github.com/Sanfordbarber30
-
 Shawn Hing 
-
 https://github.com/Shawner1

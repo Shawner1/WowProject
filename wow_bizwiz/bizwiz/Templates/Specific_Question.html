@@ -6,6 +6,10 @@
       <img src="{% static 'Home.png' %}" height="50" width="50" alt="Home" />
     </a>
     <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
+    <div style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line;">
+      <span> Hello, {{request.user}} </span>
+      <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
+    </div>
   </head>
 <body>
     <h1  class= "form" > {{question.id}}. {{question.question_text}}</h1>
@@ -15,7 +19,7 @@
     {% for answer in answers %}
     <div class="griditem1 button3 ">
         <li class="buttontext3" > <a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}} </a>
-        <p class="dateposted preview ">author: username date posted: {{answer.dateposted}}</p></li>
+        <p class="dateposted preview ">author: {{answer.user}} date posted: {{answer.dateposted}}</p></li>
     </div>
     {% endfor %}
   </ol> 

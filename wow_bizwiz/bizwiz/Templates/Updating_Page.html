@@ -7,6 +7,10 @@
                 <img src="{% static 'Home.png' %}" height="50" width="50" alt="Home" /> 
                 </a>
                 <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
+                <div style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line; ">
+                    <span> Hello, {{request.user}} </span>
+                    <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
+                  </div>
         </head>
         <body>
             <h1 style=" text-align: center; line-break: normal; white-space: wrap; overflow-wrap: break-word;">Question {{question.id}} {{question.question_text}}</h1>

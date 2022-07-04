@@ -14,6 +14,7 @@ from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 #views for signing up 
 def registerPage(request):
+    form = CreateUserForm()
     if request.user.is_authenticated:
         return redirect('home')
     else:
@@ -24,7 +25,7 @@ def registerPage(request):
                 user = form.cleaned_data.get('username')
                 messages.success(request, "Your Account has been successfully created for "+  user)
                 return redirect('signin')
-                context={'form':form}
+    context = {'form':form}
     return render(request, "register.html",context)
 #views for signing in 
 def signin(request):
@@ -83,7 +84,9 @@ class IndustryView(View):
             form = QuestionForm(request.POST)
             if form.is_valid():
                 question_description = form.cleaned_data['question']
-                Question.objects.create(question_text=question_description,industry_id=industry_id)
+                instance = request.user
+                Question.objects.create(question_text=question_description,industry_id=industry_id, user = instance)
+                
          # "redirect" to the industry page
         return redirect('industry',industry_id=industry_id)
 
@@ -106,7 +109,8 @@ class Specific_QuestionView(View):
             form = AnswerForm(request.POST)
             if form.is_valid():
                 answer_description = form.cleaned_data['answer']
-                Answer.objects.create(answer_text=answer_description,question=question)
+                instance = request.user
+                Answer.objects.create(answer_text=answer_description,question=question,user= instance)
 
         # "redirect" to the specific question page
         return redirect('specific_question',industry_id=industry_id,question_id=question_id)

@@ -28,13 +28,11 @@ A) do: navigate into your created Django project folder 1) cd [name of your dire
 
 B) execute: python manage.py runserver
 
-C) finally: http://127.0.0.1:8000/ taking you to the home page. Now you're in business.
+C) finally: http://127.0.0.1:8000/ taking you to the home page. 
 
-![Screenshot (1)](https://user-images.githubusercontent.com/98561284/177181040-b2d3a219-25b1-4bbe-a6c4-b266b3fef085.png)
-
-
-
-Remember, don't imitate other people's success, instead imitate thier systems. With BizWiz, you'll learn what it takes to truly be successful.
+![Screenshot (2)](https://user-images.githubusercontent.com/98561284/177223053-43e8654f-46fa-425d-a5b0-5e8bdf58134c.png)
+-------------------------------------------------------------------------------------------
+Remember, don't blindly imitate successful people. Instead, imitate thier systems. You know, the ones that made them successful in the first place. You'll get that here with BizWiz.
 -------------------------------------------------------------------------------------------
 Group Members:
 -------------------------------------------------

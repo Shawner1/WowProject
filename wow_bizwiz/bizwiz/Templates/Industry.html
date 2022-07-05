@@ -1,5 +1,5 @@
 <html>
-<head style="transform: translate(0mm,6mm);">
+<head class = 'front' style="transform: translate(0mm,6mm);">
   {% load static %}
   <link rel= "stylesheet" href="{% static 'style.css' %}" >
 <a class="fix form" style="margin:1mm; margin-top:10px;" href="{% url 'home' %}">
@@ -8,18 +8,17 @@
 <a>
 <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
 </a>
-<div style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line;">
+<div class='front'; style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line;">
   <span> Hello, {{request.user}} </span>
   <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
 </div>
-<div style="transform: translate(0mm,-50mm);">
 </head>
 <body> 
-<h1 class = 'title'> {{industry.industry_name}} </h1>
-
+<h1 class = 'title form' style = 'transform: translate(0,-6.5rem); position:sticky; z-index: -1;'> {{industry.industry_name}} </h1>
+<h2 
+class = 'form' style = 'transform: translate(0,-6.5rem); position:sticky; z-index: -1;'> Questions </h2>
+<div style="transform: translate(0mm,-30mm);">
       <div class = 'questions' style="text-align: center;">
-        <h2 
-          class = 'title'> Questions </h2>
             <ol>
               {% for question in questions %}
               <li class="list button3 buttontext buttonhighlight buttonact" style= " margin: 0%; font-size: 16px; height: 6.5rem" >

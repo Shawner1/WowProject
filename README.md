@@ -34,7 +34,7 @@ C) finally: http://127.0.0.1:8000/ taking you to the sign up/ sign in screen
 
 ![Screenshot (2)](https://user-images.githubusercontent.com/98561284/177223053-43e8654f-46fa-425d-a5b0-5e8bdf58134c.png)
 -------------------------------------------------------------------------------------------
-Remember, don't blindly imitate public success. Instead, imitate private systems: you know, the ones that made things successful in the first place. You'll learn that here with BizWiz.
+Remember, don't blindly imitate public success. Instead, imitate private systems. You know, the ones that made things successful in the first place. You'll learn that here with BizWiz.
 -------------------------------------------------------------------------------------------
 Group Members:
 -------------------------------------------------

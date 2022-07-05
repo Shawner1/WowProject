@@ -8,16 +8,16 @@
 <a>
 <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
 </a>
-<div class='front'; style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line;">
+<div class='front'; style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line; position:sticky;">
   <span> Hello, {{request.user}} </span>
   <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
 </div>
 </head>
 <body> 
-<h1 class = 'title form' style = 'transform: translate(0,-6.5rem); position:sticky; z-index: -1;'> {{industry.industry_name}} </h1>
+<h1 class = 'title form' style = 'transform: translate(0,-8.5rem); position:sticky; z-index: -1; '> {{industry.industry_name}} </h1>
 <h2 
-class = 'form' style = 'transform: translate(0,-6.5rem); position:sticky; z-index: -1;'> Questions </h2>
-<div style="transform: translate(0mm,-30mm);">
+class = 'form' style = 'transform: translate(0,-8.5rem); position:sticky; z-index: -1;'> Questions </h2>
+<div style="transform: translate(0mm,-40mm);">
       <div class = 'questions' style="text-align: center;">
             <ol>
               {% for question in questions %}

@@ -28,6 +28,13 @@
         
             <a href="{% url 'specific_question' industry.id question.id %}">Go Back</a>
         </footer>
-    
+        <br/><br/>
+        <hr>
+        <br/>
+        <form action="{% url 'like_post' answer.id %}"
+         method="POST">
+          {% csrf_token %}
+          <button type="submit", name="post_id", value="{{ answer.id }}", class="btn btn-primary btn-sm">Like</button>
+        </form>
     </html>
     

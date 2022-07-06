@@ -1,16 +1,23 @@
 from multiprocessing import context
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from bizwiz.models import *
 from bizwiz.forms import *
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse 
 
+def LikeView(request, pk):
+    post = get_object_or_404(Answer, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('updating_page', args=[str(pk)]))
+    
 # Create your views here.
 #views for signing up 
 def registerPage(request):
@@ -100,9 +107,9 @@ class Specific_QuestionView(View):
         answers= Answer.objects.filter(question_id=question_id)
         form = AnswerForm(initial={'answer_text': Answer.answer_text})
         return render(
-            request=request, template_name= 'Specific_Question.html', context={"form":form,"question":question, "industry":industry, "answers":answers,"answer":answer}
+            request=request, template_name= 'Specific_Question.html', context={"form":form, "question":question, "industry":industry, "answers":answers,"answer":answer}
         )
-    def post(self, request, industry_id,question_id):
+    def post(self, request, industry_id, question_id):
         '''Create the answers based on what the user submitted in the form'''
         question = Question.objects.get(id=question_id)
         if 'save' in request.POST:

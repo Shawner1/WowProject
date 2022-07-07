@@ -31,7 +31,8 @@
         <br/><br/>
         <hr>
         <br/>
-        <form action="{% url 'like_post' answer.id %}"
+        {{total_likes}}
+        <form action="{% url 'like_post'  industry.id question.id answer.id %}"
          method="POST">
           {% csrf_token %}
           <button type="submit", name="post_id", value="{{ answer.id }}", class="btn btn-primary btn-sm">Like</button>

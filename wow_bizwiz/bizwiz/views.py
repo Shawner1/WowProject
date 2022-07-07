@@ -13,11 +13,15 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse 
 
-def LikeView(request, pk):
+def LikeView(request,industry_id,question_id,answer_id):
     post = get_object_or_404(Answer, id=request.POST.get('post_id'))
     post.likes.add(request.user)
-    return HttpResponseRedirect(reverse('updating_page', args=[str(pk)]))
-    
+    answer = Answer.objects.get(id=answer_id)
+    industry = Industry.objects.get(id=industry_id)
+    question = Question.objects.get(id=question_id)
+    return redirect('updating_page', industry_id=industry_id,question_id=question_id, answer_id = answer_id)
+
+
 # Create your views here.
 #views for signing up 
 def registerPage(request):
@@ -140,8 +144,10 @@ class Updating_PageView(View):
         industry = Industry.objects.get(id=industry_id)
         question = Question.objects.get(id=question_id)
         form = Updating_PageForm(initial={'update': answer.answer_text})
+        post = get_object_or_404(Answer, id=answer_id)
+        total_likes=post.total_likes()
         return render(
-            request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question}
+            request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question,"total_likes":total_likes}
         )
     def post(self, request, answer_id,industry_id,question_id):
         '''Update or delete the specific answers based on what the user submitted in the form'''

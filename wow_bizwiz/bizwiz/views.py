@@ -90,7 +90,8 @@ class IndustryView(View):
             if form.is_valid():
                 question_description = form.cleaned_data['question']
                 instance = request.user
-                Question.objects.create(question_text=question_description,industry_id=industry_id, user = instance)
+                date= Question.dateposted
+                Question.objects.create(question_text=question_description,industry_id=industry_id, user = instance,dateposted=date)
                 
          # "redirect" to the industry page
         return redirect('industry',industry_id=industry_id)

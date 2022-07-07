@@ -36,6 +36,11 @@ def registerPage(request):
                 user = form.cleaned_data.get('username')
                 messages.success(request, "Your Account has been successfully created for "+  user)
                 return redirect('signin')
+            if  User.objects.filter(username = form.cleaned_data.get('username')).first():
+                messages.error(request, "This username is already taken")
+                return redirect('signup')
+            
+                
     context = {'form':form}
     return render(request, "register.html",context)
 #views for signing in 

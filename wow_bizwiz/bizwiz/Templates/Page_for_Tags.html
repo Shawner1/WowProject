@@ -1,29 +1,24 @@
 <html<head>
 {% load static %}
 <link rel= "stylesheet" href="{% static 'style.css' %}" >
-<div style="margin-bottom: 2rem;">
-<a class="fix" href="{% url 'home'%}">
-<img src="{% static 'Home.png' %}" height="50" width="50" alt="Home">
-</a>
-</div>
-<div class="form" style="translate: 20px;">
-<img src="{% static 'WizTransparent.png' %}" height="150" width="150" alt="BizWiz">
-</div>
-<div style="text-align:right; transform: translate(0mm,-10mm); white-space: pre-line;">
+<a class ="fix" href="{% url 'home' %}">
+    <img src="{% static 'Home.png' %}" height="50" width="50" alt="Home" />
+  </a>
+  <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
+  <div style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line;">
     <span> Hello, {{request.user}} </span>
     <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
-    <a style="background-color: white; border-radius: 8px;">
-    <img src="{% static 'profile icon.jpg' %}" height="50px" width="50px" alt="">
-    </a>
   </div>
 </head>
 <body> 
-<h1 class= "form"> Industries related to {{tags.tag_name}}</h1>
+    <div style="transform: translate(0mm,-20mm);">
+<h1 class= "form" > Industries related to {{tags.tag_name}}</h1>
 {% for industry in industry %} 
 <div class="form">
 <a class= "button2 buttonhighlight buttonact buttontext" href="{% url 'industry' industry.id %}"> {{industry.industry_name}}</a><br>
 </div>
 {% endfor %}
+</div>
 </body>
 <footer>
 <a class= "form" href="{% url 'home' %}">Go Back</a>

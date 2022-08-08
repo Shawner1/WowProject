@@ -96,7 +96,40 @@
             "industry_name":"Education",
             "tags":[2, 3]
                  }
+    },
+
+    {
+        "model": "bizwiz.Tag",
+        "pk": 1,
+        "fields":{
+            "tag_name":"Energy"
+                 }
+     },
+
+     {
+        "model": "bizwiz.Tag",
+        "pk": 2,
+        "fields":{
+            "tag_name":"Technology"
+                }
+    },
+
+    {
+    "model": "bizwiz.Tag",
+    "pk": 3,
+    "fields":{
+        "tag_name":"Retail"
+             }
+    },
+
+    {
+        "model": "bizwiz.Tag",
+        "pk": 4,
+        "fields":{
+            "tag_name":"Infrastructure"
+                 }
     }
+
 
    
 ]

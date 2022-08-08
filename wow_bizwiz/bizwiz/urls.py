@@ -10,6 +10,7 @@ from .views import LikeView
 urlpatterns = [
  path('', views.registerPage, name='register'),
  path('home/', HomeView.as_view(), name='home'),
+ path('industries/', IndustriesView.as_view(), name='industries'),
  path('signin/', views.signin, name='signin'),
  path('signout/', views.signout, name='signout'),
  path('industry/<int:industry_id>/', IndustryView.as_view(), name='industry'),

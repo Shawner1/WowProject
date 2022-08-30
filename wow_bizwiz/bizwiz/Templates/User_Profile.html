@@ -13,7 +13,30 @@
   <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
 </div>
 </head>
+<body>
+<h1 class= form> Hi, {{request.user.first_name}} </h1>
 
+<h3>Answers contributed</h3>
+<ol>
+{% for answers in answer %}
+<li>{{answers.answer_text}}</li>
+{% endfor %}
+</ol>
+<ol>
+<h3>Questions contributed</h3>
+{% for questions in question %}
+<li>{{questions.question_text}}</li>
+</ol>
+{% endfor %}
+<h3>Liked Post</h3>
+{% for likes in liked %}
+{{likes.answer_id}}
+{% endfor %}
+
+
+
+
+</body>
 
 
     <footer>

@@ -195,7 +195,9 @@ class Updating_PageView(View):
 class ProfileView(View):
     def get(self, request,user_id):
         user_id= User.objects.get(id= request.user.id)
-
+        question = Question.objects.filter(user_id = user_id)
+        answer = Answer.objects.filter(user_id = user_id)
+        liked = User.objects.filter(blog_post__user_id = user_id)
         return render(
-            request=request, template_name = 'User_Profile.html', context = {"user_id":user_id,}
+            request=request, template_name = 'User_Profile.html', context = {"user_id":user_id,"question":question,"answer":answer,"liked":liked}
         )

@@ -22,17 +22,18 @@
 <li>{{answers.answer_text}}</li>
 {% endfor %}
 </ol>
-<ol>
 <h3>Questions contributed</h3>
+<ol>
 {% for questions in question %}
 <li>{{questions.question_text}}</li>
 </ol>
 {% endfor %}
 <h3>Liked Post</h3>
+<ol>
 {% for likes in liked %}
 {{likes.answer_id}}
 {% endfor %}
-
+</ol>
 
 
 

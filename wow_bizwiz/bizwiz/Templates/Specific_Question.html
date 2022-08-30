@@ -7,7 +7,7 @@
     </a>
     <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
     <div style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line;">
-      <span> Hello, {{request.user}} </span>
+      <span> Hello,<a href="{% url 'profile_page' user_id.id %}"> {{request.user}} </a> </span>
       <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
     </div>
   </head>

@@ -18,4 +18,5 @@ urlpatterns = [
  path('tags/<int:tag_id>/', Page_for_TagsView.as_view(), name='page_for_tags'),
  path('updating_page/<int:industry_id>/<int:question_id>/<int:answer_id>/', Updating_PageView.as_view(), name='updating_page'),
  path('like/<int:industry_id>/<int:question_id>/<int:answer_id>/', LikeView, name='like_post'),
+ path('userprofile/<int:user_id>/', ProfileView.as_view(), name='profile_page')
 ]

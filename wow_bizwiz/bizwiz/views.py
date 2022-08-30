@@ -71,8 +71,6 @@ def signin(request):
                 user = username
                 messages.success(request, "Your Account has been successfully signed in "+  user)
                 return redirect('home')
-
-
             else:
                 messages.error(request, "Username Or Password is incorrect")
                 return redirect("signin")
@@ -112,6 +110,7 @@ class IndustryView(View):
         question= Question.objects.all()
         questions= Question.objects.filter(industry_id = industry_id)
         form = QuestionForm(initial={'question_text': Question.question_text})
+
         return render(
             request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question,'questions':questions}
         )
@@ -136,8 +135,9 @@ class Specific_QuestionView(View):
         answer= Answer.objects.all()
         answers= Answer.objects.filter(question_id=question_id)
         form = AnswerForm(initial={'answer_text': Answer.answer_text})
+        user_id= User.objects.get(id= request.user.id)
         return render(
-            request=request, template_name= 'Specific_Question.html', context={"form":form, "question":question, "industry":industry, "answers":answers,"answer":answer}
+            request=request, template_name= 'Specific_Question.html', context={"form":form, "question":question, "industry":industry, "answers":answers,"answer":answer,"user_id":user_id}
         )
     def post(self, request, industry_id, question_id):
         '''Create the answers based on what the user submitted in the form'''
@@ -176,7 +176,7 @@ class Updating_PageView(View):
         if post.likes.filter(id = self.request.user.id).exists():
             liked = True
         return render(
-            request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question,"total_likes":total_likes, "liked":liked}
+            request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question,"total_likes":total_likes, "liked":liked,}
         )
     def post(self, request, answer_id,industry_id,question_id):
         '''Update or delete the specific answers based on what the user submitted in the form'''
@@ -190,3 +190,12 @@ class Updating_PageView(View):
             answer.delete()
         # "redirect" to the specific question page
         return redirect('specific_question',industry_id=industry_id,question_id=question_id)
+
+@method_decorator(login_required(login_url='signin'), name='dispatch')
+class ProfileView(View):
+    def get(self, request,user_id):
+        user_id= User.objects.get(id= request.user.id)
+
+        return render(
+            request=request, template_name = 'User_Profile.html', context = {"user_id":user_id,}
+        )

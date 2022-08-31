@@ -7,15 +7,15 @@
         <img src ="{% static 'WizTransparent.png' %}" height ="175" width ="185" alt ="BizWiz" >
       </div>
       <div style="text-align:right; transform: translate(0mm,-15mm); white-space: pre-line;">
-      <span> Hello, {{request.user}} </span>
+      <span> Hello,<a href="{% url 'profile_page' user_id.id %}"> {{request.user}} </a> </span>
       <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
     </div> 
   </head>
   <body>
-  <div  style='transform: translate(0mm,-15mm);'>
+  <div  style='transform: translate(0mm,-20mm);'>
       <h1 class="title">Top Industries</h1>
         <div class ='industrygrid'>
-          {% for industry in industries %}
+          {% for industry in top_industries %}
             <div class ='griditem'>
                 <a class = " button buttonhighlight buttonact buttontext " href="{% url 'industry' industry.id %}">{{industry.industry_name}}</a>
             </div>
@@ -28,13 +28,17 @@
           <p>{{message}}</p>
           {% endfor %}
       </div>
-        <div class="foot">
-          {% for tag in tag %}
-            <a href ="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>
-          {% endfor %}
-        </div>
+      <div style="white-space: nowrap; transform: translate(0mm,-1mm);">
+      <a href="{% url 'industries' %}"><button>See All</button> </a>
+      </div>
+      <div class="foot" style="white-space: nowrap;">
+        {% for tag in tag %}
+          <a href ="{% url 'page_for_tags' tag.id %}">{{tag.tag_name}}</a>
+        {% endfor %}
+      </div>
+        <hr>
         <div class="form">
-        <div class= "row">
+        <div class= "row" style="transform: translate(0mm,-4mm);">
           <div class="rotate" style="transform: translate(1rem,-.4mm); margin-top: 0mm; margin-bottom: 0mm;">
             <a href ="https://twitter.com/BizWiz000 ">
               <img src ="{% static 'Twitter Logo.png' %}" height ="52" width ="54" alt ="Twitter" >
@@ -53,8 +57,7 @@
           </div>
         </div>
       </footer>
-  </div>
-
+    </div>
 </html>
 
 

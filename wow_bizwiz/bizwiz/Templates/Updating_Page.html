@@ -8,7 +8,7 @@
                 </a>
                 <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
                 <div style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line; ">
-                    <span> Hello, {{request.user}} </span>
+                    <span> Hello,<a href="{% url 'profile_page' user_id.id %}"> {{request.user}} </a> </span>
                     <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
                   </div>
         </head>
@@ -28,14 +28,16 @@
         
             <a href="{% url 'specific_question' industry.id question.id %}">Go Back</a>
         </footer>
-        <br/><br/>
         <hr>
-        <br/>
-        {{total_likes}}
-        <form action="{% url 'like_post'  industry.id question.id answer.id %}"
-         method="POST">
-          {% csrf_token %}
-          <button type="submit", name="post_id", value="{{ answer.id }}", class="btn btn-primary btn-sm">Like</button>
-        </form>
+            <form action="{% url 'like_post'  industry.id question.id answer.id %}"
+            method="POST">
+            {% csrf_token %}  
+            
+            {% if liked %}
+             {{total_likes}} <button type="submit", name="post_id", value="{{ answer.id }}", class="btn btn-danger btn-sm">Unlike</button>
+             {% else %}
+             {{total_likes}}<button type="submit", name="post_id", value="{{ answer.id }}", class="btn btn-primary btn-sm">Like</button>
+             {% endif %}
+            </form>
     </html>
     

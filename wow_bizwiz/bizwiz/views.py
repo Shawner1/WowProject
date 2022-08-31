@@ -1,21 +1,33 @@
+from genericpath import exists
+import imp
 from multiprocessing import context
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views import View
-from bizwiz.models import *
-from bizwiz.forms import *
-from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User
+
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout 
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy, reverse 
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.db.models import Exists
+
+from bizwiz.forms import *
+from bizwiz.models import *
+
 
 def LikeView(request,industry_id,question_id,answer_id):
     post = get_object_or_404(Answer, id=request.POST.get('post_id'))
-    post.likes.add(request.user)
+    liked = False
+    if post.likes.filter(id = request.user.id).exists():
+        post.likes.remove(request.user)
+        liked= False
+    else:
+        post.likes.add(request.user)
+        liked= True
+
     answer = Answer.objects.get(id=answer_id)
     industry = Industry.objects.get(id=industry_id)
     question = Question.objects.get(id=question_id)
@@ -59,8 +71,6 @@ def signin(request):
                 user = username
                 messages.success(request, "Your Account has been successfully signed in "+  user)
                 return redirect('home')
-
-
             else:
                 messages.error(request, "Username Or Password is incorrect")
                 return redirect("signin")
@@ -79,10 +89,19 @@ def signout(request):
 class HomeView(View):
     def get(self, request):
         industries= Industry.objects.all()
+        top_industries = Industry.objects.filter(id__lte = 9)
         tag=Tag.objects.all()
         return render(
-            request=request, template_name = 'home.html', context = {"industries":industries,"tag":tag}
+            request=request, template_name = 'home.html', context = {"industries":industries,"tag":tag, "top_industries":top_industries}
         )
+@method_decorator(login_required(login_url='signin'), name='dispatch')
+class IndustriesView(View):
+    def get(self, request):
+        industries= Industry.objects.all()
+        return render(
+            request=request, template_name = 'industries.html', context = {"industries":industries}
+        )
+
 # Industry views should display industry with its questions and take in a form to add questions
 @method_decorator(login_required(login_url='signin'), name='dispatch')
 class IndustryView(View):
@@ -91,6 +110,7 @@ class IndustryView(View):
         question= Question.objects.all()
         questions= Question.objects.filter(industry_id = industry_id)
         form = QuestionForm(initial={'question_text': Question.question_text})
+
         return render(
             request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question,'questions':questions}
         )
@@ -115,8 +135,9 @@ class Specific_QuestionView(View):
         answer= Answer.objects.all()
         answers= Answer.objects.filter(question_id=question_id)
         form = AnswerForm(initial={'answer_text': Answer.answer_text})
+        user_id= User.objects.get(id= request.user.id)
         return render(
-            request=request, template_name= 'Specific_Question.html', context={"form":form, "question":question, "industry":industry, "answers":answers,"answer":answer}
+            request=request, template_name= 'Specific_Question.html', context={"form":form, "question":question, "industry":industry, "answers":answers,"answer":answer,"user_id":user_id}
         )
     def post(self, request, industry_id, question_id):
         '''Create the answers based on what the user submitted in the form'''
@@ -151,8 +172,11 @@ class Updating_PageView(View):
         form = Updating_PageForm(initial={'update': answer.answer_text})
         post = get_object_or_404(Answer, id=answer_id)
         total_likes=post.total_likes()
+        liked = False
+        if post.likes.filter(id = self.request.user.id).exists():
+            liked = True
         return render(
-            request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question,"total_likes":total_likes}
+            request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question,"total_likes":total_likes, "liked":liked,}
         )
     def post(self, request, answer_id,industry_id,question_id):
         '''Update or delete the specific answers based on what the user submitted in the form'''
@@ -166,3 +190,14 @@ class Updating_PageView(View):
             answer.delete()
         # "redirect" to the specific question page
         return redirect('specific_question',industry_id=industry_id,question_id=question_id)
+
+@method_decorator(login_required(login_url='signin'), name='dispatch')
+class ProfileView(View):
+    def get(self, request,user_id):
+        user_id= User.objects.get(id= request.user.id)
+        question = Question.objects.filter(user_id = user_id)
+        answer = Answer.objects.filter(user_id = user_id)
+        liked = User.objects.filter(blog_post__user_id = user_id)
+        return render(
+            request=request, template_name = 'User_Profile.html', context = {"user_id":user_id,"question":question,"answer":answer,"liked":liked}
+        )

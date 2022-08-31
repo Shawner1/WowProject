@@ -7,7 +7,7 @@
     </a>
     <img src="{% static 'WizTransparent.png' %}" height="140" width="135" alt="BizWiz" />
     <div style="text-align:right; transform: translate(0mm,-30mm); white-space: pre-line;">
-      <span> Hello, {{request.user}} </span>
+      <span> Hello,<a href="{% url 'profile_page' user_id.id %}"> {{request.user}} </a> </span>
       <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
     </div>
   </head>
@@ -20,7 +20,7 @@
       {% for answer in answers %}
       <div class="griditem1 button3 ">
           <li class="buttontext3" > <a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}} </a>
-          <p class="dateposted preview ">author: {{answer.user}} date posted: {{answer.dateposted}}</p></li>
+          <p class="dateposted preview ">author:{{answer.user}} posted:{{answer.dateposted}} likes: {{answer.likes.count}}</p></li>
       </div>
       {% endfor %}
     {% else %}

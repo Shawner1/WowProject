@@ -1,0 +1,135 @@
+[
+    {
+        "model": "bizwiz.Industry",
+        "pk": 1,
+        "fields":{
+            "industry_name":"Finance",
+            "tags":[2, 3]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 2,
+        "fields":{
+            "industry_name":"Auto Manufacturing",
+            "tags":[1, 2, 3, 4]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 3,
+        "fields":{
+            "industry_name":"Oil & Gas",
+            "tags":[1, 2, 3, 4]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 4,
+        "fields":{
+            "industry_name":"Real Estate",
+            "tags":[2, 3, 4]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 5,
+        "fields":{
+            "industry_name":"E-Commerce",
+            "tags":[2, 3, 4]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 6,
+        "fields":{
+            "industry_name":"Construction",
+            "tags":[1, 4]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 7,
+        "fields":{
+            "industry_name":"Health Care",
+            "tags":[2]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 8,
+        "fields":{
+            "industry_name":"Information Technology",
+            "tags":[1, 2, 3, 4]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 9,
+        "fields":{
+            "industry_name":"Food",
+            "tags":[2, 3]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 10,
+        "fields":{
+            "industry_name":"Plumbing",
+            "tags":[1, 4]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Industry",
+        "pk": 11,
+        "fields":{
+            "industry_name":"Education",
+            "tags":[2, 3]
+                 }
+    },
+
+    {
+        "model": "bizwiz.Tag",
+        "pk": 1,
+        "fields":{
+            "tag_name":"Energy"
+                 }
+     },
+
+     {
+        "model": "bizwiz.Tag",
+        "pk": 2,
+        "fields":{
+            "tag_name":"Technology"
+                }
+    },
+
+    {
+    "model": "bizwiz.Tag",
+    "pk": 3,
+    "fields":{
+        "tag_name":"Retail"
+             }
+    },
+
+    {
+        "model": "bizwiz.Tag",
+        "pk": 4,
+        "fields":{
+            "tag_name":"Infrastructure"
+                 }
+    }
+
+
+   
+]

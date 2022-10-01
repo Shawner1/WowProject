@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from genericpath import exists
 import imp
 from multiprocessing import context
@@ -27,10 +28,11 @@ def LikeView(request,industry_id,question_id,answer_id):
     else:
         post.likes.add(request.user)
         liked= True
-
+    user_id= User.objects.get(id= request.user.id)
     answer = Answer.objects.get(id=answer_id)
     industry = Industry.objects.get(id=industry_id)
     question = Question.objects.get(id=question_id)
+    context={"user_id":user_id, "answer":answer,"industry":industry,"question":question}
     return redirect('updating_page', industry_id=industry_id,question_id=question_id, answer_id = answer_id)
 
 
@@ -91,15 +93,17 @@ class HomeView(View):
         industries= Industry.objects.all()
         top_industries = Industry.objects.filter(id__lte = 9)
         tag=Tag.objects.all()
+        user_id= User.objects.get(id= request.user.id)
         return render(
-            request=request, template_name = 'home.html', context = {"industries":industries,"tag":tag, "top_industries":top_industries}
+            request=request, template_name = 'home.html', context = {"industries":industries,"tag":tag, "top_industries":top_industries,"user_id":user_id}
         )
 @method_decorator(login_required(login_url='signin'), name='dispatch')
 class IndustriesView(View):
     def get(self, request):
         industries= Industry.objects.all()
+        user_id= User.objects.get(id= request.user.id)
         return render(
-            request=request, template_name = 'industries.html', context = {"industries":industries}
+            request=request, template_name = 'industries.html', context = {"industries":industries,"uder_id":user_id}
         )
 
 # Industry views should display industry with its questions and take in a form to add questions
@@ -110,9 +114,10 @@ class IndustryView(View):
         question= Question.objects.all()
         questions= Question.objects.filter(industry_id = industry_id)
         form = QuestionForm(initial={'question_text': Question.question_text})
+        user_id= User.objects.get(id= request.user.id)
 
         return render(
-            request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question,'questions':questions}
+            request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question,'questions':questions,"user_id":user_id}
         )
     def post(self, request, industry_id):
         '''post questions based on what the user submitted in the form'''
@@ -158,8 +163,9 @@ class Page_for_TagsView(View):
     def get(self, request,tag_id):
         tags=Tag.objects.get(id=tag_id)
         industry= Industry.objects.filter(tags=tag_id)
+        user_id= User.objects.get(id= request.user.id)
         return render(
-             request=request, template_name= 'page_for_tags.html', context={"tags":tags,"industry":industry}
+             request=request, template_name= 'page_for_tags.html', context={"tags":tags,"industry":industry,"user_id":user_id}
         )
         
 # Updating_Page views should taken in a form to update answers to specific questions
@@ -170,13 +176,14 @@ class Updating_PageView(View):
         industry = Industry.objects.get(id=industry_id)
         question = Question.objects.get(id=question_id)
         form = Updating_PageForm(initial={'update': answer.answer_text})
+        user_id= User.objects.get(id= request.user.id)
         post = get_object_or_404(Answer, id=answer_id)
         total_likes=post.total_likes()
         liked = False
         if post.likes.filter(id = self.request.user.id).exists():
             liked = True
         return render(
-            request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question,"total_likes":total_likes, "liked":liked,}
+            request=request, template_name = 'Updating_Page.html', context = {"form":form,"answer":answer,"industry":industry,"question":question,"total_likes":total_likes, "liked":liked,"user_id":user_id}
         )
     def post(self, request, answer_id,industry_id,question_id):
         '''Update or delete the specific answers based on what the user submitted in the form'''
@@ -197,7 +204,19 @@ class ProfileView(View):
         user_id= User.objects.get(id= request.user.id)
         question = Question.objects.filter(user_id = user_id)
         answer = Answer.objects.filter(user_id = user_id)
-        liked = User.objects.filter(blog_post__user_id = user_id)
+        answers = Answer.objects.all()
+        liked_post = []
+        # Loop through all post to find liked post and add liked post to users liked post list
+        for i in range(len(answers)):
+            post = get_object_or_404(Answer, id=answers[i].id)
+            liked = False
+            if post.likes.filter(id = self.request.user.id).exists():
+                liked = True
+                liked_post.append(post.answer_text)
+               
+                
+                      
+
         return render(
-            request=request, template_name = 'User_Profile.html', context = {"user_id":user_id,"question":question,"answer":answer,"liked":liked}
+            request=request, template_name = 'User_Profile.html', context = {"user_id":user_id,"question":question,"answer":answer,"liked":liked,"answers":answers,'liked_post':liked_post}
         )

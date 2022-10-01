@@ -29,11 +29,13 @@
 </ol>
 {% endfor %}
 <h3>Liked Post</h3>
-<ol>
-{% for likes in liked %}
-{{likes.answer_id}}
+{% for likes in liked_post %}
+ <ol>
+ <li>{{likes}}</li> 
+ </ol>
 {% endfor %}
-</ol>
+
+
 
 
 

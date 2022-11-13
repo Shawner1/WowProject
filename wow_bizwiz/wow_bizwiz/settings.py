@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATICFILES_DIRS= [os.path.join(BASE_DIR,'static'),]
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-%qh^pu^y)b^6h1a1^2e=vs(nf%(%8%+^xc%fe!!o($yym5rre%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['e73e-2603-7000-5f00-938a-fc92-3d41-1fe-4989.ngrok.io','127.0.0.1']
 
 
 # Application definition
@@ -107,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'EST'
 
 USE_I18N = True
 

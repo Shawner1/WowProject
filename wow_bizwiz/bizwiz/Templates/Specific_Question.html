@@ -20,7 +20,7 @@
       {% for answer in answers %}
       <div class="griditem1 button3 ">
           <li class="buttontext3" > <a href="{% url 'updating_page' industry.id question.id answer.id %}">{{answer.answer_text}} </a>
-          <p class="dateposted preview ">author:{{answer.user}} posted:{{answer.dateposted}} likes: {{answer.likes.count}}</p></li>
+          <p class="dateposted preview ">author:{{answer.user}} posted:{{answer.dateposted}}{{answer.timezone}} likes: {{answer.likes.count}}</p></li>
       </div>
       {% endfor %}
     {% else %}

@@ -1,0 +1,35 @@
+<html>
+  <head>
+    {% load static %}
+      <link rel = "stylesheet" href ="{% static 'style.css' %}" >
+     <div class="form" style="margin-top: -8mm;">
+      <div class ="rotate">
+        <img src ="{% static 'WizTransparent.png' %}" height ="175" width ="185" alt ="BizWiz" >
+      </div>
+      <div style="text-align:right; transform: translate(0mm,-15mm); white-space: pre-line;">
+      <span> Hello,<a href="{% url 'profile_page' user_id.id %}"> {{request.user}} </a> </span>
+      <span> <a href="{% url 'signout'%}"> Log Out </a> </span>
+      <h1 class="title">Frequently Asked Questions</h1>
+    </div> 
+  </head>
+
+<body>
+<div class="form" style="background-color: purple; color: white;">
+    <ol>
+        <li> <h3> Can I post the same question on for multiple industries ? </h3> </li>
+        <p>You can only post for one industry at a time. However you're able to post the same question in different industry post if it applies.</p>
+        <li> <h3> How can I change my username/password ? </h3> </li>
+        <p>You can change your username/password on the profile page under profile settings.</p>
+        <li> <h3> Can I edit my answers / questions ? </h3> </li>
+        <p> You can edit your answer using the update button to edit your post.</p>
+        <li> <h3> How can I report bugs on the site ? </h3> </li>
+        <p> contact the developers through email at coders4life111@gmail.com </p>
+        <li> <h3> Where can I find the Biz Wiz social media pages ?</h3> </li>
+        <p>The footer of the home page has all Biz Wiz instagram, twitter, and facebook page link </p>
+    </ol>
+</div>
+
+</body>
+
+
+</html>

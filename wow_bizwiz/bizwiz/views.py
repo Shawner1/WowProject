@@ -1,14 +1,17 @@
 from asyncio.windows_events import NULL
+from functools import cache
 from genericpath import exists
 import imp
+from importlib.util import cache_from_source
 from multiprocessing import context
+from tkinter.messagebox import QUESTION
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
@@ -115,9 +118,16 @@ class IndustryView(View):
         questions= Question.objects.filter(industry_id = industry_id)
         form = QuestionForm(initial={'question_text': Question.question_text})
         user_id= User.objects.get(id= request.user.id)
+        if Question.timezone == 'UTC':
+            timezone = Question.timezone
+            dateposted = Question.dateposted
+        elif Question.timezone == 'EST':
+            timezone = 'EST'
+            Question.dateposted 
+            
 
         return render(
-            request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question,'questions':questions,"user_id":user_id}
+            request=request, template_name= 'Industry.html', context={'industry':industry,'form':form,'question':question,'questions':questions,"user_id":user_id,"timezone":timezone,"dateposted":dateposted}
         )
     def post(self, request, industry_id):
         '''post questions based on what the user submitted in the form'''
@@ -212,11 +222,16 @@ class ProfileView(View):
             liked = False
             if post.likes.filter(id = self.request.user.id).exists():
                 liked = True
-                liked_post.append(post.answer_text)
-               
-                
-                      
+                liked_post.append(post.answer_text)           
 
         return render(
             request=request, template_name = 'User_Profile.html', context = {"user_id":user_id,"question":question,"answer":answer,"liked":liked,"answers":answers,'liked_post':liked_post}
+        )
+
+class FAQview(View):
+    def get(self, request):
+        user_id= User.objects.get(id= request.user.id)
+
+        return render(
+            request=request, template_name = 'faq.html', context = {"user_id":user_id}
         )

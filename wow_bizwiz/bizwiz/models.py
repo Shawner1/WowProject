@@ -1,10 +1,10 @@
 from django.utils.timezone import datetime
-from datetime import timezone
- 
+from django.utils import timezone
 from pyexpat import model
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
+import pytz
 
 # Create your models here.
 
@@ -26,6 +26,7 @@ class Question(models.Model):
     #Attribute in tbe model to connect the question text to a industry
     industry= models.ForeignKey( Industry,on_delete=models.CASCADE)#If industry is deleted all questions are deleted 
     dateposted = models.DateTimeField( auto_now= False, auto_now_add= True )#Time Posted
+    timezone= timezone.now().tzname #Timezone name
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #User as foreign key
 class Answer(models.Model):
     # An ID field is automatically added to all Django models
@@ -34,6 +35,7 @@ class Answer(models.Model):
     #Attribute in tbe model to connect the answer to a question
     question= models.ForeignKey(Question,on_delete=models.CASCADE)#If question is deleted answers are deleted
     dateposted = models.DateTimeField( auto_now= False, auto_now_add= True )#Time Posted
+    timezone= timezone.now().tzname #Timezone Name
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) #User as foreign key
     likes = models.ManyToManyField(User, related_name='blog_post')
 
